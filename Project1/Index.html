@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أين الهمزة؟</title>
+    <!-- تحميل Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* خط عربي أساسي لجمالية أفضل */
+        @import url('https://fonts.googleapis.com/css2?family=Changa:wght@300;500;700&display=swap');
+        body {
+            font-family: 'Changa', sans-serif;
+            background-color: #f7f7f7; /* خلفية فاتحة وناعمة */
+        }
+        .container {
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* تصميم الأزرار التفاعلية */
+        .option-button {
+            transition: all 0.2s ease;
+        }
+        .option-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* تخصيص الهمزة بشكل أكبر */
+        .question-word {
+            font-size: 4rem; /* حجم كبير للكلمة */
+            font-weight: 700;
+            color: #1a202c;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 5px; /* تباعد بسيط للحروف */
+        }
+        /* تخصيص شاشة النهاية */
+        .end-game-screen {
+            display: none;
+            padding: 2rem;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        /* إخفاء عنصر ما بالكامل */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+
+    <!-- حاوية اللعبة الرئيسية -->
+    <div id="game-container" class="w-full max-w-lg bg-white rounded-xl shadow-2xl p-6 md:p-10 border border-indigo-100">
+
+        <!-- العنوان والنتيجة -->
+        <header class="text-center mb-6">
+            <h1 class="text-4xl font-extrabold text-indigo-700">أين الهمزة؟</h1>
+            <p id="score-display" class="text-lg text-gray-600 mt-2">النتيجة: 0 / 0</p>
+            <div id="progress-bar" class="w-full bg-indigo-100 rounded-full h-2.5 mt-4">
+                <div id="progress-indicator" class="bg-indigo-500 h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+        </header>
+
+        <!-- منطقة عرض الكلمة -->
+        <div id="question-area" class="text-center my-8">
+            <p class="text-xl text-gray-700 mb-4">أكمل الكلمة بوضع الهمزة الصحيحة مكان ( _ ):</p>
+            <div id="word-display" class="question-word bg-indigo-50 rounded-lg shadow-inner border border-indigo-200 mx-auto w-3/4">م_من</div>
+        </div>
+
+        <!-- أزرار الخيارات -->
+        <div id="options-area" class="grid grid-cols-5 gap-3 mb-6">
+            <!-- سيتم ملؤها بواسطة JavaScript -->
+        </div>
+
+        <!-- منطقة التغذية الراجعة (الإجابة والشرح) -->
+        <div id="feedback-area" class="min-h-[100px] p-4 rounded-lg bg-white border-2 border-dashed border-gray-300 transition-all duration-300 ease-in-out hidden">
+            <p id="feedback-text" class="text-center font-medium text-lg"></p>
+            <p id="rule-explanation" class="text-gray-700 text-sm mt-2 text-center"></p>
+        </div>
+
+        <!-- زر التالي -->
+        <button id="next-button" class="mt-6 w-full py-3 bg-indigo-600 text-white font-bold text-lg rounded-lg hover:bg-indigo-700 transition option-button shadow-md disabled:bg-gray-400" disabled>
+            السؤال التالي
+        </button>
+    </div>
+
+    <!-- شاشة نهاية اللعبة -->
+    <div id="end-screen" class="end-game-screen w-full max-w-lg bg-white rounded-xl shadow-2xl p-6 md:p-10 border border-green-100">
+        <h2 class="text-3xl font-extrabold text-green-600 mb-4">انتهت اللعبة!</h2>
+        <p id="final-score" class="text-2xl font-bold text-gray-800 mb-6">لقد حصلت على 0 من 10.</p>
+
+        <div class="p-4 bg-green-50 rounded-lg text-left border border-green-200">
+            <h3 class="text-xl font-semibold text-green-700 mb-3 text-center">ملخص القواعد (ورقة الغش)</h3>
+            <ul class="text-gray-700 text-sm list-disc list-inside space-y-1">
+                <li><strong class="text-indigo-600">قوة الحركات:</strong> الكسرة > الضمة > الفتحة > السكون.</li>
+                <li><strong class="text-indigo-600">الهمزة المتوسطة:</strong> تُكتب حسب الحركة الأقوى بين الهمزة وما قبلها (الكسرة يناسبها ﺉ ، الضمة يناسبها ؤ ، الفتحة يناسبها أ).</li>
+                <li><strong class="text-indigo-600">الهمزة المتطرفة:</strong> تُكتب حسب حركة الحرف الذي قبلها مباشرة. (إذا كان ما قبلها ساكنًا، تُكتب على السطر ء).</li>
+            </ul>
+        </div>
+        
+        <button id="restart-button" class="mt-8 w-full py-3 bg-green-600 text-white font-bold text-lg rounded-lg hover:bg-green-700 transition option-button shadow-md">
+            ابدأ جولة جديدة
+        </button>
+    </div>
+
+    <script>
+        // دالة لتحويل بيانات PCM المشفرة بـ Base64 إلى ArrayBuffer
+        const base64ToArrayBuffer = (base64) => {
+            const binaryString = atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        };
+
+        // دالة لإنشاء ملف WAV من بيانات PCM
+        // API ترجع بيانات PCM16 بمعدل عينة 16000.
+        const pcmToWav = (pcmData, sampleRate) => {
+            const numChannels = 1;
+            const bytesPerSample = 2; // 16-bit PCM
+            const blockAlign = numChannels * bytesPerSample;
+            const byteRate = sampleRate * blockAlign;
+            const dataLength = pcmData.length * bytesPerSample;
+            const buffer = new ArrayBuffer(44 + dataLength);
+            const view = new DataView(buffer);
+
+            // RIFF chunk
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + dataLength, true);
+            writeString(view, 8, 'WAVE');
+
+            // FMT chunk
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true); // Sub-chunk size
+            view.setUint16(20, 1, true);  // Audio format (1 for PCM)
+            view.setUint16(22, numChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, byteRate, true);
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, 16, true); // Bits per sample (16)
+
+            // DATA chunk
+            writeString(view, 36, 'data');
+            view.setUint32(40, dataLength, true);
+
+            // Write PCM data
+            for (let i = 0; i < pcmData.length; i++) {
+                view.setInt16(44 + i * 2, pcmData[i], true);
+            }
+
+            return new Blob([buffer], { type: 'audio/wav' });
+        };
+
+        const writeString = (view, offset, string) => {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        };
+
+        /**
+         * دالة لإنشاء وتشغيل صوت الهمزة باستخدام TTS API
+         * @param {string} textToSpeak النص المراد تحويله إلى كلام
+         */
+        async function playHamzaSound(textToSpeak) {
+            const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=";
+            const apiKey = "";
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: textToSpeak }]
+                }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: "Kore" }
+                        }
+                    }
+                },
+                model: "gemini-2.5-flash-preview-tts"
+            };
+
+            const maxRetries = 5;
+            let currentRetry = 0;
+
+            while (currentRetry < maxRetries) {
+                try {
+                    const response = await fetch(apiUrl + apiKey, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const part = result?.candidates?.[0]?.content?.parts?.[0];
+                    const audioData = part?.inlineData?.data;
+                    const mimeType = part?.inlineData?.mimeType;
+
+                    if (audioData && mimeType && mimeType.startsWith("audio/L16")) {
+                        // استخراج معدل العينة من الـ mimetype (مثال: audio/L16; rate=16000)
+                        const rateMatch = mimeType.match(/rate=(\d+)/);
+                        const sampleRate = rateMatch ? parseInt(rateMatch[1], 10) : 16000;
+                        
+                        const pcmDataBuffer = base64ToArrayBuffer(audioData);
+                        const pcm16 = new Int16Array(pcmDataBuffer);
+                        const wavBlob = pcmToWav(pcm16, sampleRate);
+                        const audioUrl = URL.createObjectURL(wavBlob);
+
+                        const audio = new Audio(audioUrl);
+                        audio.play().catch(e => console.error("Error playing audio:", e));
+                        return; // نجاح وتشغيل الصوت، الخروج من الحلقة
+                    } else {
+                        console.error("Invalid audio data in response.", result);
+                        return; // خروج لعدم وجود بيانات صالحة
+                    }
+                } catch (error) {
+                    currentRetry++;
+                    if (currentRetry < maxRetries) {
+                        const delay = Math.pow(2, currentRetry) * 1000;
+                        console.log(`TTS API call failed. Retrying in ${delay / 1000}s...`);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    } else {
+                        console.error("Failed to generate TTS audio after multiple retries:", error);
+                        // يمكن عرض رسالة خطأ للمستخدم هنا إذا لزم الأمر
+                    }
+                }
+            }
+        }
+
+
+        // 1. Core Dataset
+        const gameData = [
+            { base: "م_من", answer: "مؤمن", correct_hamza: "ؤ", rule_ar: "الهمزة المتوسطة: الضمة أقوى من السكون. الضمة يناسبها الواو." },
+            { base: "م_دة", answer: "مائِدة", correct_hamza: "ئ", rule_ar: "الهمزة المتوسطة: الكسرة أقوى من الفتحة. الكسرة يناسبها الياء (نبرة)." },
+            { base: "س_ل", answer: "سأل", correct_hamza: "أ", rule_ar: "الهمزة المتوسطة: الفتحة تساوت أو غلبت السكون، والفتحة يناسبها الألف." },
+            { base: "شاط_", answer: "شاطئ", correct_hamza: "ئ", rule_ar: "الهمزة المتطرفة: تُكتب على الياء لأن ما قبلها مكسور (كسرة)." },
+            { base: "هنا_", answer: "هناء", correct_hamza: "ء", rule_ar: "الهمزة المتطرفة: تُكتب على السطر لأن ما قبلها حرف مد ساكن (ألف)." },
+            { base: "عب_", answer: "عبء", correct_hamza: "ء", rule_ar: "الهمزة المتطرفة: تُكتب على السطر لأن ما قبلها ساكن (الباء ساكنة)." },
+            { base: "ل_ل_", answer: "لؤلؤ", correct_hamza: "ؤ", rule_ar: "الهمزة المتوسطة والمتطرفة: الهمزة الأولى ساكنة وقبلها ضمة، الثانية قبلها ضمة. الضمة يناسبها الواو." },
+            { base: "ي_م", answer: "يئم", correct_hamza: "ئ", rule_ar: "الهمزة المتوسطة: الهمزة مكسورة وما قبلها مفتوح. الكسرة أقوى من الفتحة، فتُكتب على ياء (نبرة)." },
+            { base: "قر_", answer: "قرأ", correct_hamza: "أ", rule_ar: "الهمزة المتطرفة: تُكتب على الألف لأن ما قبلها مفتوح (فتحة)." },
+            { base: "ب_س", answer: "بؤس", correct_hamza: "ؤ", rule_ar: "الهمزة المتوسطة: الهمزة ساكنة وما قبلها مضموم. الضمة أقوى من السكون، فتُكتب على واو." },
+        ];
+
+        // 2. Game State
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let shuffledData = [];
+        const hamzaOptions = ["أ", "إ", "ؤ", "ئ", "ء"]; // الخيارات المتاحة للهمزة
+
+        // العناصر الأساسية في DOM
+        const gameContainer = document.getElementById('game-container');
+        const endScreen = document.getElementById('end-screen');
+        const scoreDisplay = document.getElementById('score-display');
+        const wordDisplay = document.getElementById('word-display');
+        const optionsArea = document.getElementById('options-area');
+        const feedbackArea = document.getElementById('feedback-area');
+        const feedbackText = document.getElementById('feedback-text');
+        const ruleExplanation = document.getElementById('rule-explanation');
+        const nextButton = document.getElementById('next-button');
+        const finalScore = document.getElementById('final-score');
+        const progressBar = document.getElementById('progress-indicator');
+        const restartButton = document.getElementById('restart-button');
+
+        /**
+         * خلط مصفوفة الأسئلة
+         * @param {Array} array المصفوفة المراد خلطها
+         */
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        /**
+         * بدء اللعبة أو إعادة التشغيل
+         */
+        function startGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            shuffleArray(gameData);
+            shuffledData = gameData; 
+
+            gameContainer.classList.remove('hidden');
+            endScreen.classList.add('hidden');
+            
+            updateScoreDisplay();
+            displayQuestion();
+        }
+
+        /**
+         * تحديث عرض النتيجة وشريط التقدم
+         */
+        function updateScoreDisplay() {
+            scoreDisplay.textContent = `النتيجة: ${score} / ${currentQuestionIndex}`;
+            const progress = (currentQuestionIndex / shuffledData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        /**
+         * عرض السؤال الحالي
+         */
+        function displayQuestion() {
+            if (currentQuestionIndex >= shuffledData.length) {
+                endGame();
+                return;
+            }
+
+            const currentQ = shuffledData[currentQuestionIndex];
+            
+            // إعداد واجهة السؤال
+            wordDisplay.textContent = currentQ.base;
+            feedbackArea.classList.add('hidden');
+            nextButton.disabled = true;
+            nextButton.classList.add('opacity-50', 'cursor-not-allowed');
+            optionsArea.innerHTML = ''; // مسح الخيارات القديمة
+
+            // إنشاء أزرار الخيارات
+            hamzaOptions.forEach(hamza => {
+                const button = document.createElement('button');
+                button.textContent = hamza;
+                button.className = 'option-button bg-gray-200 text-3xl font-bold py-3 rounded-xl shadow-lg hover:bg-indigo-300 text-gray-800 focus:outline-none focus:ring-4 focus:ring-indigo-300';
+                button.onclick = () => handleAnswer(hamza, button);
+                optionsArea.appendChild(button);
+            });
+        }
+
+        /**
+         * معالجة إجابة المستخدم
+         * @param {string} selectedHamza الهمزة التي اختارها المستخدم
+         * @param {HTMLElement} selectedButton الزر الذي تم النقر عليه
+         */
+        function handleAnswer(selectedHamza, selectedButton) {
+            const currentQ = shuffledData[currentQuestionIndex];
+            const isCorrect = selectedHamza === currentQ.correct_hamza;
+
+            // تعطيل جميع الأزرار بعد الاختيار
+            Array.from(optionsArea.children).forEach(btn => {
+                btn.disabled = true;
+                btn.classList.add('cursor-not-allowed');
+            });
+
+            // عرض النتيجة والشرح
+            showFeedback(isCorrect, currentQ, selectedButton);
+
+            if (isCorrect) {
+                score++;
+            }
+            
+            // تفعيل زر التالي
+            nextButton.disabled = false;
+            nextButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            updateScoreDisplay();
+
+            // تشغيل صوت الإجابة الصحيحة أو الخاطئة
+            const soundText = isCorrect ? "إجابة صحيحة!" : "إجابة خاطئة.";
+            playHamzaSound(soundText);
+        }
+
+        /**
+         * عرض التغذية الراجعة (الشرح والكلمة الصحيحة)
+         * @param {boolean} isCorrect هل كانت الإجابة صحيحة؟
+         * @param {object} question بيانات السؤال
+         * @param {HTMLElement} selectedButton الزر الذي تم النقر عليه
+         */
+        function showFeedback(isCorrect, question, selectedButton) {
+            feedbackArea.classList.remove('hidden');
+            
+            if (isCorrect) {
+                // إظهار الإجابة الصحيحة
+                feedbackText.innerHTML = `صحيح! الكلمة هي: <strong class="text-green-600">${question.answer}</strong>`;
+                selectedButton.classList.replace('bg-gray-200', 'bg-green-500');
+                selectedButton.classList.add('text-white');
+                feedbackArea.classList.replace('border-gray-300', 'border-green-400');
+                feedbackArea.classList.replace('border-red-400', 'border-green-400');
+            } else {
+                // إظهار الإجابة الخاطئة وتصحيحها
+                feedbackText.innerHTML = `خطأ. الإجابة الصحيحة هي: <strong class="text-red-600">${question.answer}</strong>`;
+                selectedButton.classList.replace('bg-gray-200', 'bg-red-500');
+                selectedButton.classList.add('text-white');
+                feedbackArea.classList.replace('border-gray-300', 'border-red-400');
+                feedbackArea.classList.replace('border-green-400', 'border-red-400');
+            }
+
+            // عرض القاعدة
+            ruleExplanation.textContent = `القاعدة: ${question.rule_ar}`;
+
+            // تحديث الكلمة المعروضة بالكامل
+            wordDisplay.textContent = question.answer;
+        }
+
+        /**
+         * الانتقال إلى السؤال التالي
+         */
+        function nextQuestion() {
+            currentQuestionIndex++;
+            displayQuestion();
+        }
+
+        /**
+         * إنهاء اللعبة وعرض النتيجة النهائية
+         */
+        function endGame() {
+            const total = shuffledData.length;
+            const percentage = (score / total) * 100;
+            
+            finalScore.textContent = `لقد حصلت على ${score} من ${total}. (بنسبة ${percentage.toFixed(0)}%)`;
+
+            gameContainer.classList.add('hidden');
+            endScreen.classList.remove('hidden');
+        }
+
+        // إعداد المستمعين للأحداث
+        nextButton.addEventListener('click', nextQuestion);
+        restartButton.addEventListener('click', startGame);
+
+        // بدء اللعبة عند تحميل الصفحة
+        window.onload = startGame;
+
+    </script>
+</body>
+</html>
