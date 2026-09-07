@@ -124,7 +124,6 @@ h1 {
     transform: rotate(-10deg) translateY(14px);
     transform-origin: 50% 85%;
     transition: opacity 0.3s ease, transform 0.35s ease;
-    mix-blend-mode: screen;
 }
 body.watering #watering-can {
     opacity: 1;
