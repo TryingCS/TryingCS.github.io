@@ -8,7 +8,7 @@ let s = JSON.parse(localStorage.getItem('plant') || 'null');
 if (!s || s.date !== today) s = { date: today, ml: 0 };
 
 const render = () => {
-    plant.textContent = s.ml >= 150 ? '🪴' : s.ml >= 100 ? '🌿' : '🌱';
+    plant.textContent = s.ml >= 400 ? '🪴' : s.ml >= 200 ? '🌿' : '🌱';
     popup.innerHTML = '<i class="fa-solid fa-droplet" style="color:var(--accent)"></i> Watered today: <b>' + s.ml + ' ml</b>';
 };
 render();
