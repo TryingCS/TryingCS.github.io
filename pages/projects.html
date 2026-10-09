@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - My Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fa-solid fa-code"></i>
+                <span>Portfolio</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li class="nav-item"><a href="certificates.html" class="nav-link">Certificates</a></li>
+                <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section class="hero">
+            <h1>Projects</h1>
+            <p class="subtitle">A collection of projects showcasing my skills and experience</p>
+        </section>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
+                <a href="https://tryingcs.github.io/kunuz/">
+                    Kunuz <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
+                </a>
+                <p>Discover the gems hidden in everyday items through an interactive web application.</p>
+                <div class="tags">
+                    <span class="tag">Web Development</span>
+                    <span class="tag">Islamic Apps</span>
+                    <span class="tag">Interactive</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-book"></i></div>
+                <a href="https://computer-science-notes.vercel.app/">
+                    CSN - Computer Science Notes <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
+                </a>
+                <p>A comprehensive wiki-like repository of computer science concepts and notes for learning and reference.</p>
+                <div class="tags">
+                    <span class="tag">Knowledge Base</span>
+                    <span class="tag">Wiki</span>
+                    <span class="tag">Educational</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+                <a href="https://github.com/TryingCS">
+                    More on GitHub <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
+                </a>
+                <p>Check out my GitHub profile for more open-source projects, code examples, and contributions.</p>
+                <div class="tags">
+                    <span class="tag">GitHub</span>
+                    <span class="tag">Open Source</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="featured-section">
+            <h2>Project Ideas in Progress</h2>
+            <div class="page-section">
+                <h3>Coming Soon</h3>
+                <p>I'm currently working on several exciting projects that will be showcased here soon. Stay tuned for updates!</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Plant Widget -->
+    <img id="watering-can" src="../assets/watering-can.png" alt="">
+    <div id="plant-wrap" title="Water the plant"><span id="plant">🌱</span></div>
+    <div id="water-popup"></div>
+    
+    <script src="../js/plant.js"></script>
+    <script src="../js/navbar.js"></script>
+</body>
+</html>
