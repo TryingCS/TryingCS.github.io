@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - My Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fa-solid fa-code"></i>
+                <span>Portfolio</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="certificates.html" class="nav-link">Certificates</a></li>
+                <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section class="hero">
+            <h1>Blog</h1>
+            <p class="subtitle">Thoughts, tutorials, and insights about technology and development</p>
+        </section>
+
+        <div class="featured-section">
+            <div class="page-section">
+                <h3><i class="fa-solid fa-pencil"></i> Welcome to My Blog</h3>
+                <p>This is where I share my thoughts, tutorials, case studies, and insights about web development, computer science, and technology in general.</p>
+                <p>Here you'll find:</p>
+                <ul style="color: var(--text-sub); line-height: 1.8; margin-left: 2rem;">
+                    <li><strong>Technical Tutorials</strong> - Deep dives into technologies and frameworks</li>
+                    <li><strong>Project Walkthroughs</strong> - How I built my featured projects</li>
+                    <li><strong>Learning Resources</strong> - Helpful guides and tips for developers</li>
+                    <li><strong>Personal Reflections</strong> - My journey in tech and lessons learned</li>
+                </ul>
+            </div>
+
+            <div class="page-section">
+                <h3><i class="fa-solid fa-newspaper"></i> Latest Posts</h3>
+                <p>Blog posts coming soon! Check back regularly for new content.</p>
+                <p>In the meantime, you can check out my <a href="https://computer-science-notes.vercel.app/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Computer Science Notes</a> for technical content and learning resources.</p>
+            </div>
+
+            <div class="page-section">
+                <h3><i class="fa-solid fa-comments"></i> Topics I Write About</h3>
+                <ul style="color: var(--text-sub); line-height: 1.8; margin-left: 2rem;">
+                    <li>Web Development & Frontend</li>
+                    <li>JavaScript & TypeScript</li>
+                    <li>Web Design & UX</li>
+                    <li>Programming Best Practices</li>
+                    <li>Career Development</li>
+                    <li>Tech Industry Insights</li>
+                </ul>
+            </div>
+
+            <div class="page-section">
+                <h3><i class="fa-solid fa-link"></i> Connect With Me</h3>
+                <p>Want to discuss ideas or share feedback? Feel free to reach out through:</p>
+                <ul style="color: var(--text-sub); line-height: 1.8; margin-left: 2rem;">
+                    <li><a href="https://github.com/TryingCS" style="color: var(--accent); text-decoration: none;">GitHub</a> - Check out my code</li>
+                    <li>Email - Coming soon</li>
+                    <li>Social Media - Links coming soon</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Plant Widget -->
+    <img id="watering-can" src="../assets/watering-can.png" alt="">
+    <div id="plant-wrap" title="Water the plant"><span id="plant">🌱</span></div>
+    <div id="water-popup"></div>
+    
+    <script src="../js/plant.js"></script>
+    <script src="../js/navbar.js"></script>
+</body>
+</html>
