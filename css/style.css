@@ -60,8 +60,16 @@ body {
 
 .nav-menu {
     display: flex;
+    flex-direction: row;
     list-style: none;
     gap: 2rem;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.nav-item {
+    display: inline-flex;
     align-items: center;
 }
 
@@ -72,6 +80,7 @@ body {
     transition: color 0.3s ease, border-bottom 0.3s ease;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid transparent;
+    white-space: nowrap;
 }
 
 .nav-item a:hover,
@@ -350,6 +359,11 @@ body.watering #watering-can {
 
     .nav-menu.active {
         left: 0;
+    }
+
+    .nav-item {
+        display: block;
+        width: 100%;
     }
 
     .nav-item a {
