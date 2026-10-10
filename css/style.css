@@ -250,6 +250,27 @@ body {
     box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
 }
 
+.site-footer {
+    border-top: 1px solid var(--navbar-border);
+    background: rgba(15, 23, 42, 0.9);
+    padding: 1.1rem 1rem;
+    text-align: center;
+}
+
+.site-footer p {
+    color: var(--text-sub);
+    font-size: 0.9rem;
+}
+
+.site-footer a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
 #plant-wrap {
     position: fixed;
     bottom: 1.5rem;
