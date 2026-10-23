@@ -1,502 +1,98 @@
-:root {
-    --bg: #f3efe8;
-    --card-bg: #fbf8f3;
-    --text-main: #1f1b18;
-    --text-sub: #5a5049;
-    --accent: #7a5f46;
-    --accent-soft: #d7c3a7;
-    --navbar-bg: #efe7dc;
-    --navbar-border: #d7c7b3;
-    --shadow: rgba(32, 25, 20, 0.08);
-    --button-text: #ffffff;
-}
-
-:root[data-theme="dark"] {
-    --bg: #171511;
-    --card-bg: #1d1a17;
-    --text-main: #f3eadc;
-    --text-sub: #b7a899;
-    --accent: #d8b98a;
-    --accent-soft: #8b745c;
-    --navbar-bg: #1a1714;
-    --navbar-border: #3b332d;
-    --shadow: rgba(0, 0, 0, 0.28);
-    --button-text: #171511;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    background: var(--bg);
-}
-
-body {
-    font-family: Georgia, "Times New Roman", serif;
-    background: var(--bg);
-    color: var(--text-main);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    line-height: 1.6;
-    transition: background-color 0.25s ease, color 0.25s ease;
-}
-
-.navbar {
-    background: var(--navbar-bg);
-    border-bottom: 1px solid var(--navbar-border);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
-}
-
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    gap: 1rem;
-}
-
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--accent);
-    cursor: pointer;
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.nav-menu {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    gap: 2rem;
-    align-items: center;
-    justify-content: flex-end;
-    margin-left: auto;
-}
-
-.nav-item {
-    display: inline-flex;
-    align-items: center;
-}
-
-.nav-item a {
-    color: var(--text-main);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.92rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: color 0.2s ease;
-    white-space: nowrap;
-}
-
-.nav-item a:hover,
-.nav-item a.active {
-    color: var(--accent);
-}
-
-.theme-toggle {
-    appearance: none;
-    border: 1px solid var(--navbar-border);
-    background: var(--card-bg);
-    color: var(--text-main);
-    border-radius: 999px;
-    padding: 0.45rem 0.8rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font: inherit;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-    box-shadow: 0 2px 8px var(--shadow);
-}
-
-.theme-toggle:hover {
-    transform: translateY(-1px);
-    border-color: var(--accent);
-}
-
-.theme-toggle-icon {
-    font-size: 0.95rem;
-    line-height: 1;
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 0.35rem;
-    margin-left: 1rem;
-}
-
-.hamburger span {
-    width: 25px;
-    height: 2px;
-    background: var(--text-main);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 8px);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-}
-
-.container {
-    flex: 1;
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 4rem 2rem;
-}
-
-.hero {
-    text-align: center;
-    margin-bottom: 4rem;
-    padding-top: 1rem;
-}
-
-.hero h1 {
-    font-size: clamp(2.3rem, 4vw, 4rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--text-main);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-}
-
-.subtitle {
-    font-size: 1.08rem;
-    color: var(--text-sub);
-    max-width: 700px;
-    margin: 0 auto;
-    font-style: italic;
-}
-
-.featured-section {
-    margin-bottom: 4rem;
-}
-
-.featured-section h2 {
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    font-weight: 700;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: var(--text-main);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    width: 100%;
-    margin-bottom: 2rem;
-}
-
-.card {
-    background: var(--card-bg);
-    padding: 2rem 1.75rem;
-    border-radius: 0.9rem;
-    border: 1px solid var(--navbar-border);
-    box-shadow: 0 6px 18px var(--shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    text-align: left;
-    position: relative;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(40, 31, 25, 0.08);
-    border-color: #c7b39a;
-}
-
-.card-icon {
-    font-size: 1.8rem;
-    color: var(--accent);
-    margin-bottom: 0.9rem;
-}
-
-.card a {
-    text-decoration: none;
-    color: var(--text-main);
-    font-weight: 700;
-    font-size: 1.2rem;
-    display: block;
-    margin-bottom: 0.5rem;
-    transition: color 0.2s;
-}
-
-.card a:hover {
-    color: var(--accent);
-}
-
-.card p {
-    color: var(--text-sub);
-    margin: 0.5rem 0 0;
-    line-height: 1.55;
-}
-
-.tags {
-    margin-top: 1.25rem;
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.tag {
-    background: #f0e8df;
-    color: var(--text-sub);
-    padding: 0.35rem 0.7rem;
-    border-radius: 999px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    border: 1px solid #e0d4c3;
-}
-
-:root[data-theme="dark"] .tag {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: var(--navbar-border);
-    color: var(--text-sub);
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 0.8rem 1.8rem;
-    background: var(--accent);
-    color: var(--button-text);
-    text-decoration: none;
-    border-radius: 0.5rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    border: 1px solid #654a39;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    box-shadow: none;
-}
-
-.cta-button:hover {
-    background: #684e3a;
-    transform: translateY(-1px);
-}
-
-.site-footer {
-    border-top: 1px solid var(--navbar-border);
-    background: #f0e8df;
-    padding: 1.2rem 1rem;
-    text-align: center;
-}
-
-:root[data-theme="dark"] .site-footer {
-    background: #1b1815;
-}
-
-.site-footer p {
-    color: var(--text-sub);
-    font-size: 0.92rem;
-}
-
-.site-footer a {
-    color: var(--accent);
-    text-decoration: none;
-}
-
-.site-footer a:hover {
-    text-decoration: underline;
-}
-
-#plant-wrap {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    z-index: 10;
-    font-size: 2.75rem;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.2s;
-    filter: none;
-}
-
-#plant-wrap:hover {
-    transform: scale(1.05);
-}
-
-#plant-wrap:active {
-    transform: scale(0.97);
-}
-
-#water-popup {
-    position: fixed;
-    bottom: 6rem;
-    right: 1.5rem;
-    z-index: 10;
-    background: var(--card-bg);
-    border: 1px solid var(--navbar-border);
-    border-radius: 0.6rem;
-    padding: 0.65rem 0.9rem;
-    font-size: 0.82rem;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(6px);
-    transition: opacity 0.25s, transform 0.25s;
-    color: var(--text-main);
-    box-shadow: 0 8px 20px rgba(42, 32, 24, 0.06);
-}
-
-#water-popup.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#watering-can {
-    position: fixed;
-    right: 5.5rem;
-    bottom: 5rem;
-    width: 110px;
-    z-index: 11;
-    pointer-events: none;
-    opacity: 0;
-    transform: rotate(-10deg) translateY(14px);
-    transform-origin: 50% 85%;
-    transition: opacity 0.3s ease, transform 0.35s ease;
-    filter: none;
-}
-
-body.watering #watering-can {
-    opacity: 1;
-    transform: rotate(45deg) translateY(0);
-}
-
-.drop {
-    position: fixed;
-    z-index: 9;
-    color: var(--accent);
-    pointer-events: none;
-    animation: fall 0.65s ease-in forwards;
-}
-
-@keyframes fall {
-    to {
-        transform: translate(12px, 60px);
-        opacity: 0;
-    }
-}
-
-.page-section {
-    padding: 2rem;
-    border-radius: 0.8rem;
-    background: var(--card-bg);
-    border: 1px solid var(--navbar-border);
-    margin-bottom: 2rem;
-    box-shadow: 0 6px 18px var(--shadow);
-}
-
-.page-section h3 {
-    color: var(--accent);
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-}
-
-.page-section p {
-    color: var(--text-sub);
-    line-height: 1.65;
-    margin-bottom: 1rem;
-}
-
-@media (max-width: 768px) {
-    .nav-menu {
-        position: absolute;
-        top: 70px;
-        left: -100%;
-        flex-direction: column;
-        background: var(--navbar-bg);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        padding: 2rem 0;
-        gap: 0;
-        border-bottom: 1px solid var(--navbar-border);
-    }
-
-    .nav-menu.active {
-        left: 0;
-    }
-
-    .nav-item {
-        display: block;
-        width: 100%;
-    }
-
-    .nav-item a {
-        display: block;
-        padding: 1rem;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    .theme-toggle {
-        padding: 0.4rem 0.7rem;
-        font-size: 0.68rem;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .container {
-        padding: 2rem 1rem;
-    }
-
-    #plant-wrap {
-        bottom: 1rem;
-        right: 1rem;
-        font-size: 2rem;
-    }
-
-    #watering-can {
-        right: 4.5rem;
-        width: 80px;
-    }
-
-    #water-popup {
-        bottom: 5rem;
-        right: 1rem;
-        font-size: 0.75rem;
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - My Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fa-solid fa-code"></i>
+                <span>Portfolio</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="certificates.html" class="nav-link">Certificates</a></li>
+                <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+            </ul>
+            <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+                <span class="theme-toggle-icon">🌙</span>
+                <span class="theme-toggle-label">Dark</span>
+            </button>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Blog</h1>
+            <p class="subtitle">Thoughts, tutorials, and insights about technology and development</p>
+        </section>
+
+        <div class="featured-section">
+            <div class="page-section">
+                <h3><i class="fa-solid fa-pencil"></i> Welcome to My Blog</h3>
+                <p>This is where I share my thoughts, tutorials, case studies, and insights about web development, computer science, and technology in general.</p>
+                <p>Here you'll find:</p>
+                <ul style="color: var(--text-sub); line-height: 1.8; margin-left: 2rem;">
+                    <li><strong>Technical Tutorials</strong> - Deep dives into technologies and frameworks</li>
+                    <li><strong>Project Walkthroughs</strong> - How I built my featured projects</li>
+                    <li><strong>Learning Resources</strong> - Helpful guides and tips for developers</li>
+                    <li><strong>Personal Reflections</strong> - My journey in tech and lessons learned</li>
+                </ul>
+            </div>
+
+            <div class="page-section">
+                <h3><i class="fa-solid fa-newspaper"></i> Latest Posts</h3>
+                <p>Blog posts coming soon! Check back regularly for new content.</p>
+                <p>In the meantime, you can check out my <a href="https://computer-science-notes.vercel.app/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Computer Science Notes</a>.</p>
+            </div>
+
+            <div class="page-section">
+                <h3><i class="fa-solid fa-comments"></i> Topics I Write About</h3>
+                <ul style="color: var(--text-sub); line-height: 1.8; margin-left: 2rem;">
+                    <li>Web Development & Frontend</li>
+                    <li>JavaScript & TypeScript</li>
+                    <li>Web Design & UX</li>
+                    <li>Programming Best Practices</li>
+                    <li>Career Development</li>
+                    <li>Tech Industry Insights</li>
+                </ul>
+            </div>
+
+            <div class="page-section">
+                <h3><i class="fa-solid fa-link"></i> Connect With Me</h3>
+                <p>Want to discuss ideas or share feedback? Feel free to reach out through:</p>
+                <ul style="color: var(--text-sub); line-height: 1.8; margin-left: 2rem;">
+                    <li><a href="https://github.com/TryingCS" style="color: var(--accent); text-decoration: none;">GitHub</a> - Check out my code</li>
+                    <li>Email - Coming soon</li>
+                    <li>Social Media - Links coming soon</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>
+            Built by <strong>TryingCS</strong> ·
+            <a href="https://github.com/TryingCS/TryingCS.github.io" target="_blank" rel="noreferrer">View this site on GitHub</a>
+        </p>
+    </footer>
+
+    <img id="watering-can" src="../assets/watering-can.png" alt="">
+    <div id="plant-wrap" title="Water the plant"><span id="plant">🌱</span></div>
+    <div id="water-popup"></div>
+
+    <script src="../js/plant.js"></script>
+    <script src="../js/navbar.js"></script>
+</body>
+</html>

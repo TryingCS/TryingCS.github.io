@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificates - My Portfolio</title>
+    <title>Projects - My Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -16,10 +16,14 @@
             </div>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
-                <li class="nav-item"><a href="certificates.html" class="nav-link active">Certificates</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li class="nav-item"><a href="certificates.html" class="nav-link">Certificates</a></li>
                 <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
             </ul>
+            <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+                <span class="theme-toggle-icon">🌙</span>
+                <span class="theme-toggle-label">Dark</span>
+            </button>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -30,34 +34,56 @@
 
     <main class="container">
         <section class="hero">
-            <h1>Certificates & Achievements</h1>
-            <p class="subtitle">Professional development and certifications</p>
+            <h1>Projects</h1>
+            <p class="subtitle">A collection of projects showcasing my skills and experience</p>
         </section>
 
-        <div class="featured-section">
-            <div class="page-section">
-                <h3><i class="fa-solid fa-star"></i> Certifications</h3>
-                <p>WIP</p>
-                <ul style="color: var(--text-sub); line-height: 1.8; margin-left: 2rem;">
-                </ul>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
+                <a href="https://tryingcs.github.io/kunuz/">
+                    Kunuz <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
+                </a>
+                <p>Discover the gems hidden in everyday items through an interactive web application.</p>
+                <div class="tags">
+                    <span class="tag">Web Development</span>
+                    <span class="tag">Islamic Apps</span>
+                    <span class="tag">Interactive</span>
+                </div>
             </div>
 
-            <div class="page-section">
-                <h3><i class="fa-solid fa-trophy"></i> Achievements</h3>
-                <p>WIP:</p>
-                <ul style="color: var(--text-sub); line-height: 1.8; margin-left: 2rem;">
-                </ul>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-book"></i></div>
+                <a href="https://computer-science-notes.vercel.app/">
+                    CSN - Computer Science Notes <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
+                </a>
+                <p>A comprehensive wiki-like repository of computer science concepts and notes for learning and reference.</p>
+                <div class="tags">
+                    <span class="tag">Knowledge Base</span>
+                    <span class="tag">Wiki</span>
+                    <span class="tag">Educational</span>
+                </div>
             </div>
 
-            <div class="page-section">
-                <h3><i class="fa-solid fa-lightbulb"></i> Skills & Expertise</h3>
-                <p>Consider organizing your certifications by category to make it easier for visitors to find relevant information:</p>
-                <ul style="color: var(--text-sub); line-height: 1.8; margin-left: 2rem;">
-                    <li>Programming Languages</li>
-                    <li>Web Development</li>
-                </ul>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+                <a href="https://github.com/TryingCS">
+                    More on GitHub <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
+                </a>
+                <p>Check out my GitHub profile for more open-source projects, code examples, and contributions.</p>
+                <div class="tags">
+                    <span class="tag">GitHub</span>
+                    <span class="tag">Open Source</span>
+                </div>
             </div>
         </div>
+
+        <section class="featured-section">
+            <h2>Project Ideas in Progress</h2>
+            <div class="page-section">
+                <h3>Coming Soon</h3>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">
