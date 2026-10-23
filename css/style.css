@@ -8,30 +8,12 @@
     --navbar-bg: #efe7dc;
     --navbar-border: #d7c7b3;
     --shadow: rgba(32, 25, 20, 0.08);
-    --button-text: #ffffff;
-}
-
-:root[data-theme="dark"] {
-    --bg: #171511;
-    --card-bg: #1d1a17;
-    --text-main: #f3eadc;
-    --text-sub: #b7a899;
-    --accent: #d8b98a;
-    --accent-soft: #8b745c;
-    --navbar-bg: #1a1714;
-    --navbar-border: #3b332d;
-    --shadow: rgba(0, 0, 0, 0.28);
-    --button-text: #171511;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-html {
-    background: var(--bg);
 }
 
 body {
@@ -42,7 +24,6 @@ body {
     display: flex;
     flex-direction: column;
     line-height: 1.6;
-    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .navbar {
@@ -62,7 +43,6 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    gap: 1rem;
 }
 
 .nav-logo {
@@ -107,36 +87,6 @@ body {
 .nav-item a:hover,
 .nav-item a.active {
     color: var(--accent);
-}
-
-.theme-toggle {
-    appearance: none;
-    border: 1px solid var(--navbar-border);
-    background: var(--card-bg);
-    color: var(--text-main);
-    border-radius: 999px;
-    padding: 0.45rem 0.8rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font: inherit;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-    box-shadow: 0 2px 8px var(--shadow);
-}
-
-.theme-toggle:hover {
-    transform: translateY(-1px);
-    border-color: var(--accent);
-}
-
-.theme-toggle-icon {
-    font-size: 0.95rem;
-    line-height: 1;
 }
 
 .hamburger {
@@ -282,17 +232,11 @@ body {
     border: 1px solid #e0d4c3;
 }
 
-:root[data-theme="dark"] .tag {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: var(--navbar-border);
-    color: var(--text-sub);
-}
-
 .cta-button {
     display: inline-block;
     padding: 0.8rem 1.8rem;
     background: var(--accent);
-    color: var(--button-text);
+    color: #fff;
     text-decoration: none;
     border-radius: 0.5rem;
     font-weight: 700;
@@ -313,10 +257,6 @@ body {
     background: #f0e8df;
     padding: 1.2rem 1rem;
     text-align: center;
-}
-
-:root[data-theme="dark"] .site-footer {
-    background: #1b1815;
 }
 
 .site-footer p {
@@ -464,11 +404,6 @@ body.watering #watering-can {
 
     .hamburger {
         display: flex;
-    }
-
-    .theme-toggle {
-        padding: 0.4rem 0.7rem;
-        font-size: 0.68rem;
     }
 
     .hero h1 {
