@@ -1,89 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kissou's space</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fa-solid fa-code"></i>
-                <span>🌌</span>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
-                <li class="nav-item"><a href="pages/projects.html" class="nav-link">Projects</a></li>
-                <li class="nav-item"><a href="pages/certificates.html" class="nav-link">Certificates</a></li>
-                <li class="nav-item"><a href="pages/blog.html" class="nav-link">Blog</a></li>
-            </ul>
-            <button class="theme-toggle" type="button" aria-label="Toggle color theme">
-                <span class="theme-toggle-icon">🌙</span>
-                <span class="theme-toggle-label">Dark</span>
-            </button>
-            <div class="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+// Mobile menu toggle
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
 
-    <main class="container">
-        <section class="hero">
-            <h1>Welcome</h1>
-            <p class="subtitle">I build things, learn constantly, and turn ideas into meaningful digital experiences.</p>
-        </section>
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+}
 
-        <section class="featured-section">
-            <h2>Featured Projects</h2>
-            <div class="grid">
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
-                    <a href="https://tryingcs.github.io/kunuz/">
-                        Kunuz <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
-                    </a>
-                    <p>Discover the gems hidden in everyday items.</p>
-                    <div class="tags">
-                        <span class="tag">Web</span>
-                        <span class="tag">Islamic apps</span>
-                    </div>
-                </div>
+// Close menu when a link is clicked
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    });
+});
 
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-book"></i></div>
-                    <a href="https://computer-science-notes.vercel.app/">
-                        CSN <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
-                    </a>
-                    <p>Some of my notes presented in a wiki-like format.</p>
-                    <div class="tags">
-                        <span class="tag">Wiki</span>
-                        <span class="tag">Knowledge Base</span>
-                    </div>
-                </div>
-            </div>
+// Set active nav link based on current page
+function setActiveNav() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href').split('/').pop() || 'index.html';
+        if (href === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
 
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="pages/projects.html" class="cta-button">View All Projects</a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <p>
-            Built by <strong>TryingCS</strong> ·
-            <a href="https://github.com/TryingCS/TryingCS.github.io" target="_blank" rel="noreferrer">View on GitHub</a>
-        </p>
-    </footer>
-
-    <img id="watering-can" src="assets/watering-can.png" alt="">
-    <div id="plant-wrap" title="Water the plant"><span id="plant">🌱</span></div>
-    <div id="water-popup"></div>
-
-    <script src="js/plant.js"></script>
-    <script src="js/navbar.js"></script>
-</body>
-</html>
+// Run on page load
+document.addEventListener('DOMContentLoaded', setActiveNav);
