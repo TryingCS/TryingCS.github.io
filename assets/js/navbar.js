@@ -2,32 +2,36 @@
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
-if (hamburger) {
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
+function setMenu(open) {
+    if (!hamburger || !navMenu) return;
+    hamburger.classList.toggle('active', open);
+    navMenu.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+}
+
+if (hamburger && navMenu) {
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.addEventListener('click', () => setMenu(!navMenu.classList.contains('active')));
+
+    // Close when any link is followed, including extra pages added by palette.js
+    navMenu.addEventListener('click', (e) => {
+        if (e.target.closest('a')) setMenu(false);
     });
 }
 
-// Close menu when a link is clicked
-const navLinks = document.querySelectorAll('.nav-link');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
-});
-
 // Set active nav link based on current page
+// "/uses", "/uses/" and "/uses/index.html" all normalise to "/uses"; the root to "".
+function normalizePath(path) {
+    return path.replace(/index\.html$/, '').replace(/\/+$/, '');
+}
+
 function setActiveNav() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href').split('/').pop() || 'index.html';
-        if (href === currentPage) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
+    const currentPath = normalizePath(window.location.pathname);
+    document.querySelectorAll('.nav-link').forEach(link => {
+        const isActive = normalizePath(link.getAttribute('href')) === currentPath;
+        link.classList.toggle('active', isActive);
+        if (isActive) link.setAttribute('aria-current', 'page');
+        else link.removeAttribute('aria-current');
     });
 }
 

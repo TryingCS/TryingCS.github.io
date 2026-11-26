@@ -6,25 +6,38 @@
     <title>Kissou's space</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+        // Apply a saved theme before paint so switching never flashes.
+        try { if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (e) {}
+    </script>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fa-solid fa-code"></i>
-                <span></span>
-            </div>
+            <a class="nav-logo" href="/">
+                <i class="fa-solid fa-code" aria-hidden="true"></i>
+                <span>TryingCS</span>
+            </a>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="/projects/" class="nav-link">Projects</a></li>
                 <li class="nav-item"><a href="/uses/" class="nav-link">Uses</a></li>
-                <li class="nav-item"><a href="/about/" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="/about/" class="nav-link active" aria-current="page">About</a></li>
 
             </ul>
-            <div class="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-actions">
+                <button type="button" class="nav-icon-btn" data-palette-open aria-label="Search pages" title="Search pages (Ctrl K)">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button type="button" class="theme-toggle" aria-label="Switch to light mode" aria-pressed="false" title="Switch to light mode">
+                    <i class="fa-solid fa-sun theme-icon theme-icon-sun" aria-hidden="true"></i>
+                    <i class="fa-solid fa-moon theme-icon theme-icon-moon" aria-hidden="true"></i>
+                </button>
+                <div class="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </nav>
@@ -47,6 +60,7 @@
 
     <script src="/assets/js/plant.js"></script>
     <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/theme.js"></script>
     <script src="/assets/js/palette.js"></script>
 </body>
 </html>

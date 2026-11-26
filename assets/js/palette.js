@@ -10,24 +10,24 @@
   ];
 
   const CSS = `
-  #pal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;display:none}
+  body.pal-open{overflow:hidden}
+  #pal-backdrop{position:fixed;inset:0;background:var(--overlay);z-index:9998;display:none}
   #pal-box{position:fixed;z-index:9999;top:15vh;left:50%;transform:translateX(-50%);
-    width:min(600px,92vw);background:#0d1117;color:#e6edf3;border:1px solid #30363d;
-    border-radius:10px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.4);display:none}
+    width:min(600px,92vw);background:var(--card-bg);color:var(--text-main);
+    border:1px solid var(--navbar-border);border-radius:10px;overflow:hidden;
+    box-shadow:0 16px 48px rgba(0,0,0,.35);display:none}
   #pal-input{width:100%;padding:14px 16px;font-size:16px;background:transparent;border:0;
-    border-bottom:1px solid #30363d;color:#e6edf3;outline:none}
+    border-bottom:1px solid var(--navbar-border);color:var(--text-main);outline:none;
+    font-family:inherit}
+  #pal-input::placeholder{color:var(--text-sub);opacity:.8}
   #pal-list{list-style:none;margin:0;padding:6px;max-height:min(320px,60vh);overflow-y:auto}
   #pal-list li{padding:10px 12px;border-radius:6px;cursor:pointer;display:flex;
     justify-content:space-between;gap:12px;align-items:baseline}
-  #pal-list li.active{background:rgba(88,166,255,.15)}
-  #pal-list .u{font-size:12px;color:#8b949e}
-  #pal-empty{padding:16px;color:#8b949e;font-size:14px;display:none}
-  #pal-foot{padding:8px 16px;border-top:1px solid #30363d;font-size:12px;color:#8b949e}
-  #pal-fab{position:fixed;right:18px;bottom:18px;z-index:9997;width:52px;height:52px;
-    border-radius:50%;border:1px solid #30363d;background:#0d1117;color:#e6edf3;font-size:18px;
-    display:none;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.35);cursor:pointer}
+  #pal-list li.active{background:var(--hover-tint)}
+  #pal-list .u{font-size:12px;color:var(--text-sub)}
+  #pal-empty{padding:16px;color:var(--text-sub);font-size:14px;display:none}
+  #pal-foot{padding:8px 16px;border-top:1px solid var(--navbar-border);font-size:12px;color:var(--text-sub)}
   @media (pointer:coarse),(max-width:768px){
-    #pal-fab{display:flex}
     #pal-box{top:0;left:0;transform:none;width:100vw;border:0;border-radius:0 0 12px 12px}
     #pal-list{max-height:70vh}
     #pal-list li{padding:14px 12px}
@@ -36,14 +36,41 @@
   const style = document.createElement("style"); style.textContent = CSS;
   const backdrop = document.createElement("div"); backdrop.id = "pal-backdrop";
   const box = document.createElement("div"); box.id = "pal-box";
+  box.setAttribute("role", "dialog");
+  box.setAttribute("aria-modal", "true");
+  box.setAttribute("aria-label", "Search pages");
   box.innerHTML = `<input id="pal-input" type="text" placeholder="Search or jump to…" autocomplete="off">
     <ul id="pal-list"></ul><div id="pal-empty">No match.</div>
     <div id="pal-foot">↑↓ navigate · Enter open · Esc close</div>`;
-  const fab = document.createElement("button"); fab.id = "pal-fab";
-  fab.setAttribute("aria-label", "Search pages");
-  fab.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i>`;
   document.head.append(style);
-  document.body.append(backdrop, box, fab);
+  document.body.append(backdrop, box);
+
+  // Pages missing from the navbar are otherwise reachable only via Ctrl+K.
+  // Mirror them into the mobile menu so phones can discover them too.
+  const navMenu = document.querySelector(".nav-menu");
+  const norm = (url) => (url || "/").replace(/\/+$/, "") || "/";
+  if (navMenu) {
+    const navUrls = new Set(
+      [...navMenu.querySelectorAll("a.nav-link")].map((a) => norm(a.getAttribute("href")))
+    );
+    const extra = PAGES.filter((p) => !navUrls.has(norm(p.url)));
+    if (extra.length) {
+      const label = document.createElement("li");
+      label.className = "nav-more-label";
+      label.textContent = "More";
+      navMenu.append(label);
+      extra.forEach((p) => {
+        const li = document.createElement("li");
+        li.className = "nav-more";
+        const a = document.createElement("a");
+        a.className = "nav-link";
+        a.href = p.url;
+        a.textContent = p.title;
+        li.append(a);
+        navMenu.append(li);
+      });
+    }
+  }
 
   const input = box.querySelector("#pal-input");
   const list = box.querySelector("#pal-list");
@@ -82,8 +109,23 @@
     list.children[i].scrollIntoView({ block: "nearest" });
   }
   const isOpen = () => box.style.display === "block";
-  const open = () => { backdrop.style.display = "block"; box.style.display = "block"; input.value = ""; render(); input.focus(); };
-  const close = () => { backdrop.style.display = "none"; box.style.display = "none"; };
+  const open = () => {
+    const menu = document.querySelector(".nav-menu");
+    const burger = document.querySelector(".hamburger");
+    if (menu) menu.classList.remove("active");
+    if (burger) { burger.classList.remove("active"); burger.setAttribute("aria-expanded", "false"); }
+    backdrop.style.display = "block";
+    box.style.display = "block";
+    document.body.classList.add("pal-open");
+    input.value = "";
+    render();
+    input.focus();
+  };
+  const close = () => {
+    backdrop.style.display = "none";
+    box.style.display = "none";
+    document.body.classList.remove("pal-open");
+  };
 
   input.addEventListener("input", render);
   input.addEventListener("keydown", e => {
@@ -96,5 +138,5 @@
     else if (e.key === "Escape") close();
   });
   backdrop.addEventListener("click", close);
-  fab.addEventListener("click", open);
+  document.querySelectorAll("[data-palette-open]").forEach(el => el.addEventListener("click", open));
 })();
