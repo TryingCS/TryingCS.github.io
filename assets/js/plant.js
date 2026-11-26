@@ -9,9 +9,13 @@ if (!s || s.date !== today) s = { date: today, ml: 0 };
 
 const render = () => {
     plant.textContent =   s.ml >=1000 ? '🌊' : s.ml >= 400 ? '🪴' : s.ml >= 200 ? '🌿' : '🌱';
-    popup.innerHTML = '<i class="fa-solid fa-droplet" style="color:var(--accent)"></i> Watered today: <b>' + s.ml + ' ml</b>';
+    popup.innerHTML = '<i class="fa-solid fa-droplet" style="color:var(--accent)"></i> '
+        + window.i18n.t('plant.watered', { ml: s.ml });
 };
 render();
+
+// Keep the counter in the current language.
+document.addEventListener('i18n:change', render);
 
 // spout tip = rightmost point of the (rotated) can
 const spout = () => {

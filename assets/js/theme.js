@@ -5,6 +5,8 @@
   if (!btn) return;
 
   const current = () => (root.dataset.theme === 'light' ? 'light' : 'dark');
+  const labelFor = (theme) =>
+    window.i18n.t(theme === 'light' ? 'theme.switchToDark' : 'theme.switchToLight');
 
   function apply(theme) {
     if (theme === 'light') {
@@ -12,7 +14,7 @@
     } else {
       root.removeAttribute('data-theme');
     }
-    const label = theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode';
+    const label = labelFor(theme);
     btn.setAttribute('aria-pressed', String(theme === 'light'));
     btn.setAttribute('aria-label', label);
     btn.title = label;
@@ -25,4 +27,6 @@
     try { localStorage.setItem('theme', next); } catch (e) {}
     apply(next);
   });
+
+  document.addEventListener('i18n:change', () => apply(current()));
 })();

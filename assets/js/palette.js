@@ -1,12 +1,13 @@
-/* Ctrl+K command palette. Add new pages to PAGES ONLY. */
+/* Ctrl+K command palette. Copy comes from assets/js/i18n.js. */
 (function () {
+  const t = (key, vars) => window.i18n.t(key, vars);
+
+  // Pages are stored by translation key so their labels follow the language.
   const PAGES = [
-    { title: "Home",     url: "/",          tags: "index accueil الرئيسية" },
-    { title: "Projects", url: "/projects/", tags: "experiments مشاريع" },
-    { title: "Uses",     url: "/uses/",     tags: "setup gear hardware" },
-    { title: "About",    url: "/about/",    tags: "contact whoami" },
-    // future experiment? just add a line:
-    // { title: "Pixel Habits", url: "/projects/pixelHabits/", tags: "game habit tracker" },
+    { key: "nav.home",     url: "/" },
+    { key: "nav.projects", url: "/projects/" },
+    { key: "nav.uses",     url: "/uses/" },
+    { key: "nav.about",    url: "/about/" },
   ];
 
   const CSS = `
@@ -38,10 +39,10 @@
   const box = document.createElement("div"); box.id = "pal-box";
   box.setAttribute("role", "dialog");
   box.setAttribute("aria-modal", "true");
-  box.setAttribute("aria-label", "Search pages");
-  box.innerHTML = `<input id="pal-input" type="text" placeholder="Search or jump to…" autocomplete="off">
-    <ul id="pal-list"></ul><div id="pal-empty">No match.</div>
-    <div id="pal-foot">↑↓ navigate · Enter open · Esc close</div>`;
+  box.setAttribute("aria-label", t("palette.dialog"));
+  box.innerHTML = `<input id="pal-input" type="text" placeholder="${t("palette.placeholder")}" autocomplete="off">
+    <ul id="pal-list"></ul><div id="pal-empty">${t("palette.noMatch")}</div>
+    <div id="pal-foot">${t("palette.hints")}</div>`;
   document.head.append(style);
   document.body.append(backdrop, box);
 
@@ -57,7 +58,8 @@
     if (extra.length) {
       const label = document.createElement("li");
       label.className = "nav-more-label";
-      label.textContent = "More";
+      label.dataset.i18n = "nav.more";
+      label.textContent = t("nav.more");
       navMenu.append(label);
       extra.forEach((p) => {
         const li = document.createElement("li");
@@ -65,7 +67,8 @@
         const a = document.createElement("a");
         a.className = "nav-link";
         a.href = p.url;
-        a.textContent = p.title;
+        a.dataset.i18n = p.key;
+        a.textContent = t(p.key);
         li.append(a);
         navMenu.append(li);
       });
@@ -75,14 +78,16 @@
   const input = box.querySelector("#pal-input");
   const list = box.querySelector("#pal-list");
   const empty = box.querySelector("#pal-empty");
+  const foot = box.querySelector("#pal-foot");
   let active = 0, results = [];
 
-  const score = (p, q) => {
+  // Search every language: typing "مشاريع" finds Projects in an English UI.
+  const score = (page, q) => {
     if (!q) return 1;
-    const t = p.title.toLowerCase(), u = p.url.toLowerCase(), g = (p.tags || "").toLowerCase();
-    if (t.startsWith(q)) return 3;
-    if (t.includes(q)) return 2;
-    return (u.includes(q) || g.includes(q)) ? 1 : 0;
+    const title = t(page.key).toLowerCase();
+    if (title.startsWith(q)) return 3;
+    if (title.includes(q)) return 2;
+    return window.i18n.every(page.key).join(" ").toLowerCase().includes(q) ? 1 : 0;
   };
 
   function render() {
@@ -92,9 +97,9 @@
     list.innerHTML = "";
     results.forEach((p, i) => {
       const li = document.createElement("li");
-      const t = document.createElement("span"); t.textContent = p.title;
-      const u = document.createElement("span"); u.className = "u"; u.textContent = p.url;
-      li.append(t, u);
+      const title = document.createElement("span"); title.textContent = t(p.key);
+      const url = document.createElement("span"); url.className = "u"; url.textContent = p.url;
+      li.append(title, url);
       li.addEventListener("click", () => location.assign(p.url));
       li.addEventListener("mousemove", () => setActive(i));
       list.appendChild(li);
@@ -139,4 +144,14 @@
   });
   backdrop.addEventListener("click", close);
   document.querySelectorAll("[data-palette-open]").forEach(el => el.addEventListener("click", open));
+
+  // Palette chrome is built here, so it needs its own language refresh.
+  document.addEventListener("i18n:change", () => {
+    const label = t("palette.dialog");
+    box.setAttribute("aria-label", label);
+    input.placeholder = t("palette.placeholder");
+    empty.textContent = t("palette.noMatch");
+    foot.textContent = t("palette.hints");
+    if (isOpen()) render();
+  });
 })();

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - My Portfolio</title>
+    <title data-i18n="projects.title">Projects - My Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/js/i18n.js"></script>
     <script>
         // Apply a saved theme before paint so switching never flashes.
         try { if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (e) {}
@@ -19,15 +20,18 @@
                 <span>TryingCS</span>
             </a>
              <ul class="nav-menu">
-                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="/projects/" class="nav-link active" aria-current="page">Projects</a></li>
-                <li class="nav-item"><a href="/uses/" class="nav-link">Uses</a></li>
-                <li class="nav-item"><a href="/about/" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="/" class="nav-link" data-i18n="nav.home">Home</a></li>
+                <li class="nav-item"><a href="/projects/" class="nav-link active" aria-current="page" data-i18n="nav.projects">Projects</a></li>
+                <li class="nav-item"><a href="/uses/" class="nav-link" data-i18n="nav.uses">Uses</a></li>
+                <li class="nav-item"><a href="/about/" class="nav-link" data-i18n="nav.about">About</a></li>
 
             </ul>
             <div class="nav-actions">
-                <button type="button" class="nav-icon-btn" data-palette-open aria-label="Search pages" title="Search pages (Ctrl K)">
+                <button type="button" class="nav-icon-btn" data-palette-open data-i18n-attr="aria-label:nav.search;title:nav.searchTitle" aria-label="Search pages" title="Search pages (Ctrl K)">
                     <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch to Arabic" title="Switch to Arabic">
+                    <span data-lang-label aria-hidden="true">ع</span>
                 </button>
                 <button type="button" class="theme-toggle" aria-label="Switch to light mode" aria-pressed="false" title="Switch to light mode">
                     <i class="fa-solid fa-sun theme-icon theme-icon-sun" aria-hidden="true"></i>
@@ -44,46 +48,46 @@
 
     <main class="container">
         <section class="hero">
-            <h1>Projects</h1>
-            <p class="subtitle">A collection of projects showcasing my skills and experience</p>
+            <h1 data-i18n="projects.heading">Projects</h1>
+            <p class="subtitle" data-i18n="projects.subtitle">A collection of projects showcasing my skills and experience</p>
         </section>
 
         <div class="grid">
             <div class="card">
                 <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
                 <a href="https://tryingcs.github.io/kunuz/">
-                    Kunuz <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
+                    <span data-i18n="projects.kunuz.title">Kunuz</span> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
                 </a>
-                <p>Discover the gems hidden in everyday items through an interactive web application.</p>
+                <p data-i18n="projects.kunuz.desc">Discover the gems hidden in everyday items through an interactive web application.</p>
                 <div class="tags">
-                    <span class="tag">Web Development</span>
-                    <span class="tag">Islamic Apps</span>
-                    <span class="tag">Interactive</span>
+                    <span class="tag" data-i18n="tags.webDev">Web Development</span>
+                    <span class="tag" data-i18n="tags.islamicApps">Islamic Apps</span>
+                    <span class="tag" data-i18n="tags.interactive">Interactive</span>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-icon"><i class="fa-solid fa-book"></i></div>
                 <a href="https://computer-science-notes.vercel.app/">
-                    CSN - Computer Science Notes <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
+                    <span data-i18n="projects.csn.title">CSN - Computer Science Notes</span> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
                 </a>
-                <p>A comprehensive wiki-like repository of computer science concepts and notes for learning and reference.</p>
+                <p data-i18n="projects.csn.desc">A comprehensive wiki-like repository of computer science concepts and notes for learning and reference.</p>
                 <div class="tags">
-                    <span class="tag">Knowledge Base</span>
-                    <span class="tag">Wiki</span>
-                    <span class="tag">Educational</span>
+                    <span class="tag" data-i18n="tags.knowledgeBase">Knowledge Base</span>
+                    <span class="tag" data-i18n="tags.wiki">Wiki</span>
+                    <span class="tag" data-i18n="tags.educational">Educational</span>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-icon"><i class="fa-solid fa-code"></i></div>
                 <a href="https://github.com/TryingCS">
-                    More on GitHub <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
+                    <span data-i18n="projects.github.title">More on GitHub</span> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.9rem; vertical-align: middle; opacity: 0.6;"></i>
                 </a>
-                <p>Check out my GitHub profile for more open-source projects, code examples, and contributions.</p>
+                <p data-i18n="projects.github.desc">Check out my GitHub profile for more open-source projects, code examples, and contributions.</p>
                 <div class="tags">
-                    <span class="tag">GitHub</span>
-                    <span class="tag">Open Source</span>
+                    <span class="tag" data-i18n="tags.github">GitHub</span>
+                    <span class="tag" data-i18n="tags.openSource">Open Source</span>
                 </div>
             </div>
         </div>
@@ -91,13 +95,13 @@
 
     <footer class="site-footer">
         <p>
-            Built by <strong>TryingCS</strong> ·
-            <a href="https://github.com/TryingCS/TryingCS.github.io" target="_blank" rel="noreferrer">View on GitHub</a>
+            <span data-i18n="footer.builtBy">Built by</span> <strong>TryingCS</strong> ·
+            <a href="https://github.com/TryingCS/TryingCS.github.io" target="_blank" rel="noreferrer" data-i18n="footer.viewGithub">View on GitHub</a>
         </p>
     </footer>
 
     <img id="watering-can" src="/assets/watering-can.png" alt="">
-    <div id="plant-wrap" title="Water the plant"><span id="plant">🌱</span></div>
+    <div id="plant-wrap" title="Water the plant" data-i18n-attr="title:plant.title"><span id="plant">🌱</span></div>
     <div id="water-popup"></div>
 
     <script src="/assets/js/plant.js"></script>

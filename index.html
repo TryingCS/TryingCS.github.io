@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kissou's space</title>
+    <title data-i18n="home.title">Kissou's space</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/js/i18n.js"></script>
     <script>
         // Apply a saved theme before paint so switching never flashes.
         try { if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (e) {}
@@ -19,15 +20,18 @@
                 <span>TryingCS</span>
             </a>
              <ul class="nav-menu">
-                <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="/projects/" class="nav-link">Projects</a></li>
-                <li class="nav-item"><a href="/uses/" class="nav-link">Uses</a></li>
-                <li class="nav-item"><a href="/about/" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="/" class="nav-link active" aria-current="page" data-i18n="nav.home">Home</a></li>
+                <li class="nav-item"><a href="/projects/" class="nav-link" data-i18n="nav.projects">Projects</a></li>
+                <li class="nav-item"><a href="/uses/" class="nav-link" data-i18n="nav.uses">Uses</a></li>
+                <li class="nav-item"><a href="/about/" class="nav-link" data-i18n="nav.about">About</a></li>
 
             </ul>
             <div class="nav-actions">
-                <button type="button" class="nav-icon-btn" data-palette-open aria-label="Search pages" title="Search pages (Ctrl K)">
+                <button type="button" class="nav-icon-btn" data-palette-open data-i18n-attr="aria-label:nav.search;title:nav.searchTitle" aria-label="Search pages" title="Search pages (Ctrl K)">
                     <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch to Arabic" title="Switch to Arabic">
+                    <span data-lang-label aria-hidden="true">ع</span>
                 </button>
                 <button type="button" class="theme-toggle" aria-label="Switch to light mode" aria-pressed="false" title="Switch to light mode">
                     <i class="fa-solid fa-sun theme-icon theme-icon-sun" aria-hidden="true"></i>
@@ -44,25 +48,25 @@
 
     <main class="container">
         <section class="hero">
-            <h1>Welcome</h1>
-            <p class="subtitle">I build things, learn constantly, and turn ideas into meaningful digital experiences.</p>
-    
+            <h1 data-i18n="home.heading">Welcome</h1>
+            <p class="subtitle" data-i18n="home.subtitle">I build things, learn constantly, and turn ideas into meaningful digital experiences.</p>
+        </section>
     </main>
 
     <footer class="site-footer">
         <p>
-            Built by <strong>TryingCS</strong> ·
-            <a href="https://github.com/TryingCS/TryingCS.github.io" target="_blank" rel="noreferrer">View on GitHub</a>
+            <span data-i18n="footer.builtBy">Built by</span> <strong>TryingCS</strong> ·
+            <a href="https://github.com/TryingCS/TryingCS.github.io" target="_blank" rel="noreferrer" data-i18n="footer.viewGithub">View on GitHub</a>
         </p>
     </footer>
 
     <img id="watering-can" src="/assets/watering-can.png" alt="">
-    <div id="plant-wrap" title="Water the plant"><span id="plant">🌱</span></div>
+    <div id="plant-wrap" title="Water the plant" data-i18n-attr="title:plant.title"><span id="plant">🌱</span></div>
     <div id="water-popup"></div>
 
     <script src="/assets/js/plant.js"></script>
     <script src="/assets/js/navbar.js"></script>
     <script src="/assets/js/theme.js"></script>
-<script src="/assets/js/palette.js"></script>
+    <script src="/assets/js/palette.js"></script>
 </body>
 </html>
