@@ -571,7 +571,7 @@ html[dir="rtl"] .tag { font-size: 0.78rem; }
 
 .uses-panel-head {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr;
     align-items: center;
     gap: 0.9rem;
     padding-bottom: 1.15rem;
@@ -601,14 +601,6 @@ html[dir="rtl"] .tag { font-size: 0.78rem; }
     margin: 0.15rem 0 0;
     font-size: 0.8rem;
     color: var(--text-sub);
-}
-
-.uses-count {
-    font-size: 0.72rem;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.18em;
-    color: var(--text-sub);
-    opacity: 0.65;
 }
 
 .uses-list { margin: 0; padding: 0; }
@@ -657,7 +649,6 @@ html[dir="rtl"] .tag { font-size: 0.78rem; }
     .uses-item { grid-template-columns: 1fr; gap: 0.2rem; }
     .uses-panel { padding: 1.25rem 1.15rem 0.55rem; }
     .uses-panel-head { gap: 0.75rem; }
-    .uses-count { display: none; }
 }
 
 /* Mirror the headline wash; Arabic has no letter case and no joins to space out. */
@@ -665,9 +656,81 @@ html[dir="rtl"] .uses-hero h1 {
     background-image: linear-gradient(260deg, var(--text-main) 0%, var(--text-main) 24%, var(--accent) 64%, var(--accent-2) 100%);
 }
 html[dir="rtl"] .uses-eyebrow,
-html[dir="rtl"] .uses-item dt,
-html[dir="rtl"] .uses-count {
+html[dir="rtl"] .uses-item dt {
     letter-spacing: normal;
     text-transform: none;
 }
 html[dir="rtl"] .uses-eyebrow { font-size: 0.8rem; }
+
+/* --- ABOUT PAGE --- */
+.about-hero {
+    text-align: start;
+    margin-bottom: 3rem;
+}
+
+.about-hero .subtitle { margin: 0; }
+
+.about-section h2 {
+    margin: 0 0 0.6rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+}
+
+.about-section p {
+    max-width: 60ch;
+    color: var(--text-sub);
+}
+
+.about-contacts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.about-contact {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    padding: 1rem 1.15rem;
+    border-radius: 0.9rem;
+    border: 1px solid var(--navbar-border);
+    background-color: var(--card-bg);
+    background-image: radial-gradient(130% 95% at 100% 0%, var(--card-sheen), transparent 62%);
+    color: var(--text-main);
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, background-color 0.3s ease;
+}
+
+.about-contact:hover {
+    color: var(--text-main);
+    text-decoration: none;
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--navbar-border));
+}
+
+.about-contact:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.about-contact i { color: var(--accent); font-size: 1.1rem; }
+
+.about-contact-label { font-weight: 600; }
+
+.about-contact-value {
+    margin-inline-start: auto;
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    overflow-wrap: anywhere;
+}
+
+html[dir="rtl"] .about-section h2 {
+    letter-spacing: normal;
+    text-transform: none;
+}

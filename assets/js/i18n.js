@@ -85,8 +85,13 @@
         browser: { label: 'Browsers', value: 'Brave Browser and Ladybird' },
         },
       about: {
-        title: "Kissou's space",
-        heading: 'contact',
+        title: "About - Kissou's space",
+        heading: 'About',
+        subtitle: 'A bit about me, and where to find me online.',
+        contact: 'Contact',
+        contactNote: 'The quickest ways to reach me .',
+        github: 'GitHub',
+        email: 'Email',
       },
       footer: {
         builtBy: 'Built by',
@@ -172,8 +177,13 @@
         browser: { label: 'المتصفحات', value: 'Brave Browser و Ladybird' }
       },
       about: {
-        title: 'مساحة كيسو',
-        heading: 'تواصل',
+        title: 'حول — مساحة كيسو',
+        heading: 'حول',
+        subtitle: 'نبذة عني، وأين تجدني على الإنترنت.',
+        contact: 'تواصل',
+        contactNote: 'أسرع الطرق للوصول إليّ .',
+        github: 'GitHub',
+        email: 'البريد الإلكتروني',
       },
       footer: {
         builtBy: 'صُنع بواسطة',
