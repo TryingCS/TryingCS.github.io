@@ -82,7 +82,7 @@
         editor: { label: 'Editor', value: 'Visual Studio Code' },
         notes: { label: 'Notes and Docs', value: 'Obsidian' },
         terminal: { label: 'Terminal Emulator', value: 'Gnome Terminal' },
-        browser: { label: 'Browsers', value: 'Brave Browser and Ladybird' },
+        browser: { label: 'Browsers', value: 'Brave Origin and Ladybird' },
         },
       about: {
         title: "About - Kissou's space",
@@ -174,7 +174,7 @@
         editor: { label: 'المحرر', value: 'Visual Studio Code' },
         notes: { label: 'الملاحظات والتوثيق', value: 'Obsidian' },
         terminal: { label: 'الطرفية', value: 'Gnome Terminal' },
-        browser: { label: 'المتصفحات', value: 'Brave Browser و Ladybird' }
+        browser: { label: 'المتصفحات', value: 'Brave Origin و Ladybird' }
       },
       about: {
         title: 'حول — مساحة كيسو',
