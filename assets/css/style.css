@@ -477,3 +477,197 @@ html[dir="rtl"] .hero h1 {
 
 html[dir="rtl"] .subtitle { font-style: normal; }
 html[dir="rtl"] .tag { font-size: 0.78rem; }
+/* --- USES PAGE (spec-sheet layout) --- */
+.uses-hero {
+    max-width: 60ch;
+    margin: 1rem 0 3rem;
+}
+
+.uses-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 1.1rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+}
+
+.uses-eyebrow::before {
+    content: "";
+    width: 2.2rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.75;
+}
+
+.uses-hero h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    background-image: linear-gradient(100deg, var(--text-main) 0%, var(--text-main) 24%, var(--accent) 64%, var(--accent-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.uses-lede {
+    max-width: 54ch;
+    margin: 0;
+    font-size: 1.02rem;
+    color: var(--text-sub);
+}
+
+.uses-lede a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.uses-lede a:hover { text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+
+.uses-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    margin-bottom: 1rem;
+}
+
+.uses-panel {
+    --panel-hue: var(--accent);
+    position: relative;
+    overflow: hidden;
+    padding: 1.5rem 1.5rem 0.7rem;
+    border-radius: 1rem;
+    border: 1px solid var(--navbar-border);
+    background-color: var(--card-bg);
+    background-image: radial-gradient(120% 90% at 100% 0%, var(--card-sheen), transparent 62%);
+    box-shadow: 0 12px 30px -22px var(--shadow);
+    transition: border-color 0.25s ease, background-color 0.3s ease;
+}
+
+.uses-panel:nth-child(2) { --panel-hue: var(--accent-3); }
+
+/* A hairline of the panel's own hue, so the two sheets read apart. */
+.uses-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    inset-inline: 0;
+    height: 2px;
+    background-image: linear-gradient(90deg, transparent, color-mix(in srgb, var(--panel-hue) 70%, transparent), transparent);
+}
+
+.uses-panel:hover {
+    border-color: color-mix(in srgb, var(--panel-hue) 42%, var(--navbar-border));
+}
+
+.uses-panel-head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.9rem;
+    padding-bottom: 1.15rem;
+    border-bottom: 1px solid var(--navbar-border);
+}
+
+.uses-panel-icon {
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 0.7rem;
+    font-size: 1rem;
+    color: var(--panel-hue);
+    background-color: color-mix(in srgb, var(--panel-hue) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--panel-hue) 30%, transparent);
+}
+
+.uses-panel-title h2 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 650;
+    letter-spacing: 0.02em;
+}
+
+.uses-panel-note {
+    margin: 0.15rem 0 0;
+    font-size: 0.8rem;
+    color: var(--text-sub);
+}
+
+.uses-count {
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.18em;
+    color: var(--text-sub);
+    opacity: 0.65;
+}
+
+.uses-list { margin: 0; padding: 0; }
+
+.uses-item {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 0.3rem 1rem;
+    align-items: baseline;
+    margin-inline: -0.55rem;
+    padding: 0.95rem 0.55rem;
+    border-radius: 0.5rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--navbar-border) 75%, transparent);
+    transition: background-color 0.2s ease;
+}
+
+.uses-item:last-child { border-bottom: 0; }
+
+.uses-item:hover { background-color: color-mix(in srgb, var(--panel-hue) 7%, transparent); }
+
+.uses-item dt {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-sub);
+    transition: color 0.2s ease;
+}
+
+.uses-item:hover dt { color: var(--panel-hue); }
+
+.uses-item dd {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-main);
+    text-wrap: balance;
+}
+
+@media (min-width: 780px) {
+    /* Hardware has fewer entries; let the sheets differ in width. */
+    .uses-grid { grid-template-columns: 0.85fr 1.15fr; }
+}
+
+@media (max-width: 560px) {
+    .uses-item { grid-template-columns: 1fr; gap: 0.2rem; }
+    .uses-panel { padding: 1.25rem 1.15rem 0.55rem; }
+    .uses-panel-head { gap: 0.75rem; }
+    .uses-count { display: none; }
+}
+
+/* Mirror the headline wash; Arabic has no letter case and no joins to space out. */
+html[dir="rtl"] .uses-hero h1 {
+    background-image: linear-gradient(260deg, var(--text-main) 0%, var(--text-main) 24%, var(--accent) 64%, var(--accent-2) 100%);
+}
+html[dir="rtl"] .uses-eyebrow,
+html[dir="rtl"] .uses-item dt,
+html[dir="rtl"] .uses-count {
+    letter-spacing: normal;
+    text-transform: none;
+}
+html[dir="rtl"] .uses-eyebrow { font-size: 0.8rem; }

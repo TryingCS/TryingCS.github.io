@@ -70,16 +70,19 @@
       uses: {
         title: 'Uses - TryingCS',
         heading: 'What I Use',
+        eyebrow: 'Setup',
         intro: 'A list of the stuff I use daily (inspired by <a href="https://uses.tech/" target="_blank" rel="noreferrer">uses.tech</a>).',
         hardware: 'Hardware',
+        hardwareNote: 'The machines doing the daily work',
         software: 'Software',
+        softwareNote: 'The tools I open every day',
         laptop: { label: 'Laptop', value: 'HP EliteBook x360 830 G7 Notebook PC' },
         phone: { label: 'Smartphone', value: 'Xiaomi Redmi Note 8' },
         os: { label: 'OS', value: 'Linux Mint (Cinnamon DE)' },
         editor: { label: 'Editor', value: 'Visual Studio Code' },
         notes: { label: 'Notes and Docs', value: 'Obsidian' },
-        terminal:{label:'Terminal Emulator', value:'Gnome Terminal'},
-        browser:{label: 'Browsers ', value: 'Brave Origin and Ladybird'},
+        terminal: { label: 'Terminal Emulator', value: 'Gnome Terminal' },
+        browser: { label: 'Browsers', value: 'Brave Browser and Ladybird' },
         },
       about: {
         title: "Kissou's space",
@@ -154,15 +157,19 @@
       uses: {
         title: 'أدواتي — TryingCS',
         heading: 'ما أستخدمه',
+        eyebrow: 'عدّتي',
         intro: 'قائمة بالأشياء التي أستخدمها يوميًا (مستوحاة من <a href="https://uses.tech/" target="_blank" rel="noreferrer">uses.tech</a>).',
         hardware: 'العتاد',
+        hardwareNote: 'الأجهزة التي تقوم بالعمل اليومي',
         software: 'البرمجيات',
+        softwareNote: 'الأدوات التي أفتحها كل يوم',
         laptop: { label: 'الحاسوب المحمول', value: 'HP EliteBook x360 830 G7 Notebook PC' },
         phone: { label: 'الهاتف', value: 'Xiaomi Redmi Note 8' },
         os: { label: 'نظام التشغيل', value: 'Linux Mint (بيئة Cinnamon)' },
         editor: { label: 'المحرر', value: 'Visual Studio Code' },
         notes: { label: 'الملاحظات والتوثيق', value: 'Obsidian' },
-        terminal: {label: 'الطرفية', value:'Gnome Terminal' }
+        terminal: { label: 'الطرفية', value: 'Gnome Terminal' },
+        browser: { label: 'المتصفحات', value: 'Brave Browser و Ladybird' }
       },
       about: {
         title: 'مساحة كيسو',

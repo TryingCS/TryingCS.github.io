@@ -39,25 +39,68 @@
   </div>
 </nav>
 
-<main class="container">
-    <h1 data-i18n="uses.heading">What I Use</h1>
-    <p data-i18n-html="uses.intro">A list of the stuff I use daily (inspired by <a href="https://uses.tech/" target="_blank" rel="noreferrer">uses.tech</a>).</p>
+<main class="container uses">
+    <header class="uses-hero">
+        <p class="uses-eyebrow" data-i18n="uses.eyebrow">Setup</p>
+        <h1 data-i18n="uses.heading">What I Use</h1>
+        <p class="uses-lede" data-i18n-html="uses.intro">A list of the stuff I use daily (inspired by <a href="https://uses.tech/" target="_blank" rel="noreferrer">uses.tech</a>).</p>
+    </header>
 
-    <h2><i class="fa-solid fa-laptop"></i> <span data-i18n="uses.hardware">Hardware</span></h2>
-    <ul>
-        <li><strong data-i18n="uses.laptop.label">Laptop</strong>: <span data-i18n="uses.laptop.value">HP EliteBook x360 830 G7 Notebook PC</span></li>
-        <li><strong data-i18n="uses.phone.label">Smartphone</strong>: <span data-i18n="uses.phone.value">Xiaomi Redmi Note 8</span></li>
-    </ul>
+    <div class="uses-grid">
+        <section class="uses-panel">
+            <div class="uses-panel-head">
+                <span class="uses-panel-icon"><i class="fa-solid fa-laptop" aria-hidden="true"></i></span>
+                <div class="uses-panel-title">
+                    <h2 data-i18n="uses.hardware">Hardware</h2>
+                    <p class="uses-panel-note" data-i18n="uses.hardwareNote">The machines doing the daily work</p>
+                </div>
+                <span class="uses-count" aria-hidden="true">02</span>
+            </div>
+            <dl class="uses-list">
+                <div class="uses-item">
+                    <dt data-i18n="uses.laptop.label">Laptop</dt>
+                    <dd data-i18n="uses.laptop.value">HP EliteBook x360 830 G7 Notebook PC</dd>
+                </div>
+                <div class="uses-item">
+                    <dt data-i18n="uses.phone.label">Smartphone</dt>
+                    <dd data-i18n="uses.phone.value">Xiaomi Redmi Note 8</dd>
+                </div>
+            </dl>
+        </section>
 
-    <h2><i class="fa-solid fa-window-maximize"></i> <span data-i18n="uses.software">Software</span></h2>
-    <ul>
-        <li><strong data-i18n="uses.os.label">OS</strong>: <span data-i18n="uses.os.value">Linux Mint (Cinnamon DE)</span></li>
-        <li><strong data-i18n="uses.editor.label">Editor</strong>: <span data-i18n="uses.editor.value">Visual Studio Code</span></li>
-        <li><strong data-i18n="uses.notes.label">Notes and Docs</strong>: <span data-i18n="uses.notes.value">Obsidian</span></li>
-        <li><strong data-i18n="uses.terminal.label">Terminal Emulator </strong>: <span data-i18n="uses.terminal.value">Gnome Terminal</span></li>
-<li><strong data-il8n="uses.browser.label">Browsers</strong>: <spa data-i18n="uses.browser.value">Brave Browser and Ladybird</span></li>
-    </ul>
-    
+        <section class="uses-panel">
+            <div class="uses-panel-head">
+                <span class="uses-panel-icon"><i class="fa-solid fa-window-maximize" aria-hidden="true"></i></span>
+                <div class="uses-panel-title">
+                    <h2 data-i18n="uses.software">Software</h2>
+                    <p class="uses-panel-note" data-i18n="uses.softwareNote">The tools I open every day</p>
+                </div>
+                <span class="uses-count" aria-hidden="true">05</span>
+            </div>
+            <dl class="uses-list">
+                <div class="uses-item">
+                    <dt data-i18n="uses.os.label">OS</dt>
+                    <dd data-i18n="uses.os.value">Linux Mint (Cinnamon DE)</dd>
+                </div>
+                <div class="uses-item">
+                    <dt data-i18n="uses.editor.label">Editor</dt>
+                    <dd data-i18n="uses.editor.value">Visual Studio Code</dd>
+                </div>
+                <div class="uses-item">
+                    <dt data-i18n="uses.notes.label">Notes and Docs</dt>
+                    <dd data-i18n="uses.notes.value">Obsidian</dd>
+                </div>
+                <div class="uses-item">
+                    <dt data-i18n="uses.terminal.label">Terminal Emulator</dt>
+                    <dd data-i18n="uses.terminal.value">Gnome Terminal</dd>
+                </div>
+                <div class="uses-item">
+                    <dt data-i18n="uses.browser.label">Browsers</dt>
+                    <dd data-i18n="uses.browser.value">Brave Browser and Ladybird</dd>
+                </div>
+            </dl>
+        </section>
+    </div>
 </main>
 
 <footer class="site-footer">
